@@ -7,21 +7,22 @@ class Anagram {
      * @return {boolean}
      */
     isAnagram(s, t) {
-        const smap = new Map();
-        const tmap = new Map();
-        const schars = s.split('');
-        const tchars = t.split('');
-        const fm = new Map([...smap, ...tmap]);
+        const fm = new Map();
         if (s.length !== t.length) {
             return false;
         }
-        for (let i = 0; i < schars.length; i++) {
-            smap.set(i, schars[i]);
-            tmap.set(i, tchars[i]);
+        for (const char of s) {
+            fm.set(char, (fm.get(char) || 0) + 1);
         }
-        fm.forEach((v, k) => {
-            console.log(v, k);
-        });
+        for (const char of t) {
+            //non null operator = ts
+            if (!fm.has(char))
+                return false;
+            fm.set(char, (fm.get(char) || 0) - 1);
+            if (fm.get(char) < 0)
+                return false;
+        }
+        console.log(fm);
         return true;
     }
 }
