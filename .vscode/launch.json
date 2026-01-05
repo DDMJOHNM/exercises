@@ -15,27 +15,43 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Debug topKFrequent Test (one-click)",
+            "runtimeExecutable": "node",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+            "runtimeArgs": [
+                "--inspect-brk"
+            ],
+            "args": [
+                "--runInBand",
+                "src/solutions/arrays_and_hashmaps/topKFrequent /topKFrequent.test.ts"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
             "skipFiles": [
                 "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/src/solutions/arrays_and_hashmaps/topKFrequent/topKFrequent.ts",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
             ]
-        },
+        }
+        ,
         {
             "type": "node",
             "request": "launch",
-            "name": "Run Jest (npm test)",
-            "runtimeExecutable": "npm",
+            "name": "Debug Jest - Active File",
+            "runtimeExecutable": "node",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
             "runtimeArgs": [
-                "test",
-                "--",
-                "--runInBand"
+                "--inspect-brk"
             ],
+            "args": [
+                "--runInBand",
+                "${file}"
+            ],
+            "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}"
+            "internalConsoleOptions": "neverOpen",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
         }
     ]
 }

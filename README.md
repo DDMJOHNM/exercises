@@ -68,3 +68,5 @@ neetcode/
 - tsc src/solutions/arrays_and_hashmaps/anagram/anagram.ts
 - npm test
 - node src/solutions/arrays_and_hashmaps/anagram/anagram.js
+
+//npx jest src/solutions/arrays_and_hashmaps/topKFrequent\ /topKFrequent.test.ts --runInBand

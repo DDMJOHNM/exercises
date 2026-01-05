@@ -42,23 +42,47 @@
 // Memory is limited (extra space required for buckets).
 // Elements range over a wide interval, making bucket allocation inefficient.
 
+//The complexity O(n log n) means the algorithm effectively performs a logarithmic operation (like halving the problem size, as in binary search) for each of the \(n\) elements in the input. 
+
+// export function topKFrequent(nums: number[], k: number): Array<number> {
+ 
+//     if (nums.length === 0) return [];
+
+//     let min = Math.min(...nums);
+//     let max = Math.max(...nums);
+//     let bucketCount = Math.floor((max - min) / nums.length) + 1;
+//     let buckets: number[][] = Array.from({ length: bucketCount }, () => []);
+
+//     // distribute numbers into buckets; clamp index to valid range to avoid undefined
+//     nums.forEach((num) => {
+//         // compute raw index then clamp between 0 and bucketCount - 1
+//        let bucketIndex = Math.floor((num - min) / nums.length);
+//         if (!buckets[bucketIndex]) buckets[bucketIndex] = [];
+//         buckets[bucketIndex].push(num);
+//     });    
+//         return buckets.reduce((sortedArr, bucket) => {
+//         return sortedArr.concat(bucket.sort((a, b) => a - b));        
+//     })   
+// }
+
 export function topKFrequent(nums: number[], k: number): Array<number> {
  
-    if (nums.length === 0) return [];
+    //frequency map
+    const count: any = {}
+    for (const num of nums) {
+        count[num] = (count[num] || 0) + 1
+    }
 
-    let min = Math.min(...nums);
-    let max = Math.max(...nums);
-    let bucketCount = Math.floor((max - min) / nums.length) + 1;
-    let buckets: number[][] = Array.from({ length: bucketCount }, () => []);
+    //convert to array of tuples
+    const arr: [number, number][] = Object.entries(count).map(
+        ([num, freq]) => [Number(freq), parseInt(num)]
+    );
 
-    // distribute numbers into buckets; clamp index to valid range to avoid undefined
-    nums.forEach((num) => {
-        // compute raw index then clamp between 0 and bucketCount - 1
-       let bucketIndex = Math.floor((num - min) / nums.length);
-        if (!buckets[bucketIndex]) buckets[bucketIndex] = [];
-        buckets[bucketIndex].push(num);
-    });
-        return buckets.reduce((sortedArr, bucket) => {
-        return sortedArr.concat(bucket.sort((a, b) => a - b));        
-    })   
+    //most frequent first
+    arr.sort((a, b) => b[0] - a[0]) 
+    console.log(arr);
+   //pair 1 extract second element of tuple
+
+    //keep only the first k entries
+   return arr.slice(0, k).map((pair) => pair[1]);   
 }
