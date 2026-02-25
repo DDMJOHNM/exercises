@@ -8,9 +8,11 @@
             "type": "node",
             "request": "launch",
             "name": "Run ts-node-script",
-            "runtimeExecutable": "ts-node-script",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-script",
             "cwd": "${workspaceFolder}",
-            "args": []
+            "args": [
+                "${file}"
+            ]
         },
         {
             "type": "node",
