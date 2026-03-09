@@ -9,14 +9,11 @@ export function binarySearch(nums: number[], target: number): number {
         let mid = Math.floor((left + right) / 2);
         if (nums[mid]! < target) {
             left = mid + 1;
-            console.log(left + "left");
         }
         else if (nums[mid]! > target) {
             right = mid - 1;
-            console.log(right + "right");
         }
         else {
-            console.log(mid + "mid");
             return mid;
         }
     }
