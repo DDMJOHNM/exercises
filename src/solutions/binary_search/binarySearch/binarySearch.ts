@@ -14,7 +14,7 @@ export function binarySearch(nums: number[], target: number): number {
             right = mid - 1;
         }
         else {
-            return mid;
+            return mid;   
         }
     }
     return -1;
